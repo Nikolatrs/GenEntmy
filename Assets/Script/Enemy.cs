@@ -16,7 +16,8 @@ public class Enemy : MonoBehaviour
     {
         
         var nextPosition = transform.forward *_spid;
-        transform.position = nextPosition;
+
+        transform.position += nextPosition;
 
     }
 }
