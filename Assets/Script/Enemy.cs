@@ -1,23 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private float _incline = 0.2f;
+    [SerializeField] private float _spid = 0.3f;
 
-    [SerializeField] float _spid = 0.3f;
+    private Vector3 _vectrForward;
 
-    void Start()
+    private void Awake()
     {
-        
+        _vectrForward = transform.forward;
     }
 
-    void Update()
+    private void Update()
     {
-        
-        var nextPosition = transform.forward *_spid;
+        MowePerson();
+    }
 
+    private void MowePerson()
+    {
+        Vector3 nextPosition = _vectrForward * _spid;
+        transform.forward = Vector3.down* _incline + _vectrForward;
         transform.position += nextPosition;
-
     }
 }
