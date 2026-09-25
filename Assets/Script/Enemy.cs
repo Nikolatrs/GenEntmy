@@ -7,9 +7,10 @@ public class Enemy : MonoBehaviour
 
     private Vector3 _vectrForward;
 
+
     private void Awake()
     {
-        _vectrForward = transform.forward;
+        _vectrForward = transform.forward.normalized;
     }
 
     private void Update()
@@ -20,7 +21,13 @@ public class Enemy : MonoBehaviour
     private void MowePerson()
     {
         Vector3 nextPosition = _vectrForward * _spid;
-        transform.forward = Vector3.down* _incline + _vectrForward;
-        transform.position += nextPosition;
+        Vector3 vectorIncline = Vector3.down * _incline + _vectrForward;
+        transform.forward = vectorIncline;
+        transform.Translate(nextPosition, Space.World);
+    }
+
+    public void IndicateDirection(Vector3 derectionEnemy)
+    {
+        _vectrForward = derectionEnemy.normalized;
     }
 }

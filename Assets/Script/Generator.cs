@@ -4,16 +4,17 @@ public class Generator : MonoBehaviour
 {
     [SerializeField] private Enemy _enemy;
 
-    public void GenPublic(float rotateBot)
+    public void GenerationPublic(Vector3 direction)
     {
-        GeneratinEnemi(rotateBot);
+        GenerationEnemy(direction);
     }
 
-    private void GeneratinEnemi(float rotateBot)
+    private void GenerationEnemy(Vector3 direction)
     {
-        Vector2 positionOnCircle = Random.insideUnitCircle * transform.localScale.x;
-        Vector3 positionOnSpown = new Vector3(positionOnCircle.x, 0, positionOnCircle.y);
-        Vector3 globalPosition = transform.position + positionOnSpown;
-        Instantiate(_enemy, globalPosition, Quaternion.Euler(0, rotateBot, 0));
+        Vector2 positionOnCircle = Random.insideUnitCircle * (transform.localScale.x/2);
+        Vector3 positionOnSpown = transform.position + new Vector3(positionOnCircle.x, 0, positionOnCircle.y);
+        Vector3 derectionEnemy = direction;
+        Instantiate(_enemy, positionOnSpown, Quaternion.identity).MoveDerection(derectionEnemy);
+
     }
 }
