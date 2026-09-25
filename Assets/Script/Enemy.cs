@@ -7,7 +7,6 @@ public class Enemy : MonoBehaviour
 
     private Vector3 _vectrForward;
 
-
     private void Awake()
     {
         _vectrForward = transform.forward.normalized;
@@ -18,16 +17,16 @@ public class Enemy : MonoBehaviour
         MowePerson();
     }
 
+    public void IndicateDirection(Vector3 derectionEnemy)
+    {
+        _vectrForward = derectionEnemy.normalized;
+    }
+
     private void MowePerson()
     {
         Vector3 nextPosition = _vectrForward * _spid;
         Vector3 vectorIncline = Vector3.down * _incline + _vectrForward;
         transform.forward = vectorIncline;
         transform.Translate(nextPosition, Space.World);
-    }
-
-    public void IndicateDirection(Vector3 derectionEnemy)
-    {
-        _vectrForward = derectionEnemy.normalized;
     }
 }

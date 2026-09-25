@@ -6,7 +6,6 @@ public class Spawner : MonoBehaviour
     private float _delay = 2.0f;
     private float _startDelay = 0;
 
-
     private void Start()
     {
         InvokeRepeating(nameof(SpawnEnamy), _startDelay, _delay);
